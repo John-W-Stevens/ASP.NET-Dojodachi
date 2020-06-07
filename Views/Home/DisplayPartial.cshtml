@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-6 offset-3 col-lg-4 offset-lg-4" id="MessageContainer">
+        @if (ViewBag.State == "Happy")
+        {
+            <img src="~/images/happy.png" alt="happy dojodachi" />
+        }
+        else if (ViewBag.State == "Mad")
+        {
+            <img src="~/images/mad.png" alt="mad dojodachi" />
+        }
+        else if (ViewBag.State == "Sad")
+        {
+            <img src="~/images/sad.png" alt="sad dojodachi" />
+        }
+
+        <p id="message">@ViewBag.Message</p>
+    </div>
+</div>
+
+@* Images taken from: https://sunflowerstorytime.com/2015/04/28/feelings-faces/ *@

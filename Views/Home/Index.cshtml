@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row text-center">
+
+    @* Stats component *@
+    <div class="col-12">
+        <partial name="StatsPartial"/>
+    </div>
+
+    @* Main Display component *@
+    <div class="col-12">
+        <partial name="DisplayPartial"/>
+    </div>
+
+    @* Buttons (form) component *@
+    <div class="col-6 offset-3 col-lg-4 offset-lg-4" id="buttons">
+        <partial name="ButtonsPartial" />
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* If game is ongoing *@
+@if (ViewBag.GameState == "ongoing")
+{
+    <div class="row">
+
+        <div class="col-3">
+            <form action="/" method="post">
+                <input type="hidden" name="Feed" />
+                <button class="btn btn-success">Feed</button>
+            </form>
+        </div>
+        <div class="col-3">
+            <form action="/" method="post">
+                <input type="hidden" name="Play" />
+                <button class="btn btn-primary">Play</button>
+            </form>
+        </div>
+        <div class="col-3">
+            <form action="/" method="post">
+                <input type="hidden" name="Work" />
+                <button class="btn btn-warning">Work</button>
+            </form>
+        </div>
+        <div class="col-3">
+            <form action="/" method="post">
+                <input type="hidden" name="Sleep" />
+                <button class="btn btn-dark">Sleep</button>
+            </form>
+        </div>
+
+    </div>
+}
+
+@* If game has ended *@
+
+else {
+    <div class="row">
+
+        <div class="col-12">
+            <form action="/" method="post">
+                <input type="hidden" name="restart" />
+                <button class="btn btn-primary">Restart?</button>
+            </form>
+        </div>
+
+    </div>
+}
+
+
