@@ -51,7 +51,7 @@ namespace Dojodachi.Controllers
                 HttpContext.Session.SetInt32("Meals", 3);
                 // State can be "Happy", "Angry", "Sad"
                 HttpContext.Session.SetString("State", "Happy");
-                HttpContext.Session.SetString("Message", "Get your Dojodachi's energy over 100 to win.");
+                HttpContext.Session.SetString("Message", "Get your Dojodachi's fullness, happiness, and energy over 100 to win.");
                 HttpContext.Session.SetString("GameState", "ongoing");
             }
 
@@ -138,13 +138,21 @@ namespace Dojodachi.Controllers
                 Console.WriteLine("Work");
                 int? Energy = HttpContext.Session.GetInt32("Energy");
                 int NewEnergy = Energy ?? default(int);
-                HttpContext.Session.SetInt32("Energy", NewEnergy -= 5);
 
-                int? Meals = HttpContext.Session.GetInt32("Meals");
-                int NewMeals = Meals ?? default(int);
-                int AddToMeals = rand.Next(1, 4);
-                HttpContext.Session.SetInt32("Meals", NewMeals + AddToMeals);
-                HttpContext.Session.SetString("Message", $"You worked, spending 5 energy, and earned {AddToMeals} meals.");
+                if (NewEnergy >= 5)
+                {
+                    HttpContext.Session.SetInt32("Energy", NewEnergy -= 5);
+
+                    int? Meals = HttpContext.Session.GetInt32("Meals");
+                    int NewMeals = Meals ?? default(int);
+                    int AddToMeals = rand.Next(1, 4);
+                    HttpContext.Session.SetInt32("Meals", NewMeals + AddToMeals);
+                    HttpContext.Session.SetString("Message", $"You worked, spending 5 energy, and earned {AddToMeals} meals.");
+                }
+                else
+                {
+                    HttpContext.Session.SetString("Message", "Your dojodachi doesn't have enough energy!");
+                }
             }
 
             else if (Request.Form.ContainsKey("Sleep"))
